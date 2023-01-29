@@ -8,9 +8,9 @@ const CategoryMenu = ({ categories }) => {
         //implicit return with ( ) insted of { }
         return (
         //key - musi być tam gdzie map, nie może być głębiej!
-            <CategoryItem key={category.id} category={category} />
+            <CategoryItem key={category.id} category={category}/>
         );
-    })};
+    })}
   </div>
   )
 };
