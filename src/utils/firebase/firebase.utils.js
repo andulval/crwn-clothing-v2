@@ -4,6 +4,7 @@ import {
   signInWithRedirect,
   signInWithPopup,
   GoogleAuthProvider,
+  createUserWithEmailAndPassword,
 } from "firebase/auth";
 
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
@@ -21,40 +22,57 @@ const firebaseConfig = {
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 
-const provider = new GoogleAuthProvider();
+const googleProvider = new GoogleAuthProvider(); //initialize class, provider can by for github, tweeter etc.
 
-provider.setCustomParameters({
+googleProvider.setCustomParameters({
   prompt: "select_account",
 });
 
 export const auth = getAuth();
 export const signInWithGooglePopup = () => {
-  return signInWithPopup(auth, provider);
+  return signInWithPopup(auth, googleProvider);
 };
+export const signInWithGoogleRedirect = () =>
+  signInWithRedirect(auth, googleProvider);
 
 export const db = getFirestore(); //init firestore instance of database
 
-export const createUserDocumentFromAuth = async (userAuth) => {
-    const userDocRef = doc(db, 'users', userAuth.uid) //create special reference object with document called 'users' - słuyz do sprawdzania czy istnieje user i c omoże zrobic 
+export const createUserDocumentFromAuth = async (
+  userAuth,
+  additionalInformation = {} //argument not obligatory, initialize with empty object
+) => {
+  if (!userAuth) return;
 
-    const userSnapshot = await getDoc(userDocRef); //sprawdzamy czy istnieje dokument o danym unique path which where generated in doc() method
-    //on this object Google provide special methods like do that user exist or we need add
+  const userDocRef = doc(db, "users", userAuth.uid); //create special reference object with document called 'users' - słuyz do sprawdzania czy istnieje user i jakie ma przywileje, omoże zrobic
 
-    if(!userSnapshot.exists()){
-        const {displayName, email} = userAuth;
-        const createdAt = new Date();
+  const userSnapshot = await getDoc(userDocRef); //sprawdzamy czy istnieje dokument o danym unique path which where generated in doc() method
+  //on this object Google provide special methods like 'do that user exist' or we need 'add new one'
 
-        try {
-            await setDoc(userDocRef, {
-                displayName,
-                email,
-                createdAt
-            })     
-        } catch (error) {
-            console.log('error creating the user', error.message)
-        }
+  if (!userSnapshot.exists()) {
+    //create new date in 'user' document - if no exist already
+    const { displayName, email } = userAuth;
+    const createdAt = new Date();
+
+    try {
+      await setDoc(userDocRef, {
+        displayName, //is set to null on object Auth in the createAuthUserWithEmailAndPassword method return object
+        email,
+        createdAt,
+        ...additionalInformation, //it will overwrite before values if it is the same
+      });
+    } catch (error) {
+      console.log("error creating the user", error.code);
     }
+  }
 
-    return userDocRef
+  return userDocRef;
+};
 
-}
+export const createAuthUserWithEmailAndPassword = async (
+  email,
+  password
+) => {
+  if (!email || !password) return; //get out if not
+
+  return await createUserWithEmailAndPassword(auth, email, password);
+};
