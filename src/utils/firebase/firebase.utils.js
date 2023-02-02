@@ -5,6 +5,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
@@ -21,6 +22,8 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
+// Initialize Firebase Authentication and get a reference to the service
+export const auth = getAuth(firebaseApp); //eventually getAuth(firebaseApp);
 
 const googleProvider = new GoogleAuthProvider(); //initialize class, provider can by for github, tweeter etc.
 
@@ -28,7 +31,7 @@ googleProvider.setCustomParameters({
   prompt: "select_account",
 });
 
-export const auth = getAuth();
+
 export const signInWithGooglePopup = () => {
   return signInWithPopup(auth, googleProvider);
 };
@@ -76,3 +79,12 @@ export const createAuthUserWithEmailAndPassword = async (
 
   return await createUserWithEmailAndPassword(auth, email, password);
 };
+
+export const signInAuthUserWithEmailAndPassword = async (
+    email,
+    password
+  ) => {
+    if (!email || !password) return; //get out if not
+  
+    return await signInWithEmailAndPassword(auth, email, password);
+  };
