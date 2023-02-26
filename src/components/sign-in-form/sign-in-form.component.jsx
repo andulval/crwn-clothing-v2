@@ -1,12 +1,14 @@
 import "./sign-in-form.styles.scss";
 import FormInput from "../form-input/form-input.component.jsx";
 import Button from "../button/button.component";
-import { useState } from "react";
+import { useState} from "react";
 import {
   signInWithGooglePopup,
   createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword
 } from "../../utils/firebase/firebase.utils.js";
+// import { UserContext } from "../../contexts/user.context";
+
 
 const defaultFormFields = {
   email: "",
@@ -16,6 +18,8 @@ const defaultFormFields = {
 const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
+//   const {setCurrentUser} = useContext(UserContext);
+
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -29,6 +33,7 @@ const SignInForm = () => {
       const { user } = await signInAuthUserWithEmailAndPassword(email, password); //returns userCredential, and we want only user
       // Signed in
       console.warn("user => ", user);
+    //   setCurrentUser(user);
       // .then((userCredential) => {
       //   // Signed in
       //   const user = userCredential.user;
@@ -43,33 +48,13 @@ const SignInForm = () => {
         console.error({ errorCode, errorMessage });
       }
     }
-
-    // try {
-    //   //2 auth user - createAuthUserWithEmailAndPassword(email, password);
-    //   const { user } = await createAuthUserWithEmailAndPassword(
-    //     email,
-    //     password
-    //   );
-    //   console.log("user => ", user);
-    //   //3 create user document
-    //   const newUser = await createUserDocumentFromAuth(user, { displayName });
-    //   console.log("newUserSaved => ", newUser);
-    //   resetFormFields();
-    // } catch (error) {
-    //   if (error.code === "auth/email-already-in-use") {
-    //     //this code is from firebase when it checks if user already exists
-    //     alert("Cannot create user, email already in use");
-    //   } else if (error.code === "auth/weak-password") {
-    //     alert("Password should be at least 6 characters");
-    //   } else {
-    //     console.log("error SignUpForm", error.message);
-    //   }
-    // }
   };
 
   const logGoogleUser = async () => {
-    const { user } = await signInWithGooglePopup();
-    const userDocRef = await createUserDocumentFromAuth(user);
+    // const { user } = await signInWithGooglePopup();
+    // // setCurrentUser(user);
+    // const userDocRef = await createUserDocumentFromAuth(user);
+    await signInWithGooglePopup();
   };
 
   const handleChange = (event) => {
