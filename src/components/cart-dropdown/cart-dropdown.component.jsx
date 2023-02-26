@@ -13,7 +13,7 @@ function CardDropdown({product}) {
       <div className="cart-items">
         {cart.map((products)=>{
             return (
-                <span>{products.name}</span>
+                <span key={products.id}>{products.name}</span>
             )
         })}
         {/* //tutaj map przez cart list */}
