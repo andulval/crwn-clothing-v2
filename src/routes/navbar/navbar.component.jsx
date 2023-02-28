@@ -18,7 +18,7 @@ import CardDropdown from '../../components/cart-dropdown/cart-dropdown.component
 
 const Navbar = () => {
     const {currentUser} = useContext(UserContext);
-    const {cart, setCart, toggleCart, setToggleCart} = useContext(CartContext);
+    const {cartItems, setCartItems, toggleCart, setToggleCart, addItemToCart} = useContext(CartContext);
     // console.log('toggleCart', toggleCart);
 
     return(
@@ -35,9 +35,10 @@ const Navbar = () => {
                     Sign Out, {currentUser.email}</span>) : (<Link className='nav-link' to='/auth'>
                     Sign in
                     </Link>)}
-                    <CartIcon />
+                    <CartIcon toggleCart/>
                 </div>
                 {toggleCart ? (<CardDropdown />) : (null)}
+                {/* {toggleCart && <CardDropdown />} */}
             </div>
             <Outlet/>
         </Fragment>

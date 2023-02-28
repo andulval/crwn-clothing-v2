@@ -1,0 +1,123 @@
+michz@DESKTOP-J93F3DE MINGW64 /d/_Programowanie/2023 - React/mich-clothing (context-for-state)
+$ git checkout branch-3
+error: Your local changes to the following files would be overwritten by checkout:
+        src/components/cart-dropdown/cart-dropdown.component.jsx
+Please commit your changes or stash them before you switch branches.      
+Aborting
+
+michz@DESKTOP-J93F3DE MINGW64 /d/_Programowanie/2023 - React/mich-clothing (context-for-state)
+$ git add .
+
+michz@DESKTOP-J93F3DE MINGW64 /d/_Programowanie/2023 - React/mich-clothing (context-for-state)
+$ git commit -m ''
+Aborting commit due to empty commit message.
+
+michz@DESKTOP-J93F3DE MINGW64 /d/_Programowanie/2023 - React/mich-clothing (context-for-state)
+$ git commit -m 'dropdown'
+[context-for-state 12c4b20] dropdown
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+michz@DESKTOP-J93F3DE MINGW64 /d/_Programowanie/2023 - React/mich-clothing (context-for-state)
+$ git push
+Enumerating objects: 11, done.
+Counting objects: 100% (11/11), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (6/6), 528 bytes | 528.00 KiB/s, done.
+Total 6 (delta 4), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (4/4), completed with 4 local objects.     
+To https://github.com/andulval/crwn-clothing-v2.git
+   40f1cef..12c4b20  context-for-state -> context-for-state
+
+michz@DESKTOP-J93F3DE MINGW64 /d/_Programowanie/2023 - React/mich-clothing (context-for-state)
+$ git b
+git: 'b' is not a git command. See 'git --help'.
+
+The most similar commands are
+        bisect
+        branch
+        am
+        gc
+        mv
+        p4
+        rm
+
+michz@DESKTOP-J93F3DE MINGW64 /d/_Programowanie/2023 - React/mich-clothing (context-for-state)
+$ git branch
+  branch-2-addingFonts
+  branch-3
+* context-for-state
+  master
+  my-main-branch
+
+michz@DESKTOP-J93F3DE MINGW64 /d/_Programowanie/2023 - React/mich-clothing (context-for-state)
+$ git push origin head:master
+fatal: 'origin' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+michz@DESKTOP-J93F3DE MINGW64 /d/_Programowanie/2023 - React/mich-clothing (context-for-state)
+$ git checkout master
+Switched to branch 'master'
+Your branch is up to date with 'mich-clothing/master'.
+
+michz@DESKTOP-J93F3DE MINGW64 /d/_Programowanie/2023 - React/mich-clothing (master)
+$ git pull
+Already up to date.
+
+michz@DESKTOP-J93F3DE MINGW64 /d/_Programowanie/2023 - React/mich-clothing (master)
+$ git merge context-for-state 
+Updating 48354d1..12c4b20
+Fast-forward
+ src/App.js                                         |  7 +--
+ src/assets/shopping-bag.svg                        | 53 ++++++++++++++++++++
+ .../cart-dropdown/cart-dropdown.component.jsx      | 27 +++++++++++      
+ .../cart-dropdown/cart-dropdown.styles.scss        | 30 ++++++++++++     
+ src/components/cart-icon/cart-icon.component.jsx   | 23 +++++++++        
+ src/components/cart-icon/cart-icon.styles.scss     | 22 +++++++++        
+ .../product-card/product-card.component.jsx        | 30 ++++++++++++     
+ .../product-card/product-card.styles.scss          | 52 ++++++++++++++++++++
+ .../sign-in-form/sign-in-form.component.jsx        | 35 ++++----------   
+ .../sign-up-form/sign-up-form.component.jsx        |  5 +-
+ src/contexts/cart.context.jsx                      | 25 ++++++++++       
+ src/contexts/product.context.jsx                   | 23 +++++++++        
+ src/contexts/user.context.jsx                      | 37 ++++++++++++++   
+ src/index.js                                       | 24 +++++++---       
+ src/index.scss                                     |  1 +
+ src/routes/navbar/navbar.component.jsx             | 25 ++++++++--       
+ src/routes/shop/shop.component.jsx                 | 25 ++++++++++       
+ src/routes/shop/shop.styles.scss                   |  6 +++
+ src/shop-data.json                                 | 56 ++++++++++++++++++++++
+ src/utils/firebase/firebase.utils.js               | 11 ++++-
+ 20 files changed, 473 insertions(+), 44 deletions(-)
+ create mode 100644 src/assets/shopping-bag.svg
+ create mode 100644 src/components/cart-dropdown/cart-dropdown.component.jsx
+ create mode 100644 src/components/cart-dropdown/cart-dropdown.styles.scss create mode 100644 src/components/cart-icon/cart-icon.component.jsx      
+ create mode 100644 src/components/cart-icon/cart-icon.styles.scss        
+ create mode 100644 src/components/product-card/product-card.component.jsx create mode 100644 src/components/product-card/product-card.styles.scss  
+ create mode 100644 src/contexts/cart.context.jsx
+ create mode 100644 src/contexts/product.context.jsx
+ create mode 100644 src/contexts/user.context.jsx
+ create mode 100644 src/routes/shop/shop.component.jsx
+ create mode 100644 src/routes/shop/shop.styles.scss
+ create mode 100644 src/shop-data.json
+
+michz@DESKTOP-J93F3DE MINGW64 /d/_Programowanie/2023 - React/mich-clothing (master)
+$ git push origin master
+fatal: 'origin' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+michz@DESKTOP-J93F3DE MINGW64 /d/_Programowanie/2023 - React/mich-clothing (master)
+$ git push
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/andulval/crwn-clothing-v2.git
+   48354d1..12c4b20  master -> master
+
+michz@DESKTOP-J93F3DE MINGW64 /d/_Programowanie/2023 - React/mich-clothing (master)
+$ git checkout -b add-to-cart
+Switched to a new branch 'add-to-cart'

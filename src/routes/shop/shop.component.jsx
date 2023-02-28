@@ -8,7 +8,7 @@ const Shop = ()=> {
     // console.log('shop component', SHOP_DATA)
     const {products} = useContext(ProductsContext);
     // const {cart, setCart} = useContext(CartContext);
-    console.log('products', products)
+    // console.log('products', products)
     
     return (
         <div className="products-container">
