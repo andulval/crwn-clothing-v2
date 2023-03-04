@@ -22,9 +22,22 @@
       flex-direction: column;
       overflow: auto
     }
-  
+    
+    .total-price-dropdown{
+      justify-content: center;
+      text-align: center;
+      padding: 6px 0px;
+      margin: 5px 0px;
+      font-style: italic; 
+      border-bottom: 1px solid darkgrey;
+      border-top: 1px solid darkgrey;
+    }
+
     button {
       margin-top: auto;
+    //   font-size: auto;
+    //   width: fit-content;
+    // block-size: fit-content;
     }
   }
   

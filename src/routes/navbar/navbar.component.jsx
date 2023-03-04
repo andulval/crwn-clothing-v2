@@ -12,7 +12,7 @@ import {CartContext} from '../../contexts/cart.context'
 import {signOutUser} from '../../utils/firebase/firebase.utils.js'
 
 import CartIcon from '../../components/cart-icon/cart-icon.component'
-import CardDropdown from '../../components/cart-dropdown/cart-dropdown.component'
+import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component'
 
 
 
@@ -35,9 +35,9 @@ const Navbar = () => {
                     Sign Out, {currentUser.email}</span>) : (<Link className='nav-link' to='/auth'>
                     Sign in
                     </Link>)}
-                    <CartIcon toggleCart/>
+                    <CartIcon className='cart-icon'/>
                 </div>
-                {toggleCart ? (<CardDropdown />) : (null)}
+                {toggleCart ? (<CartDropdown />) : (null)}
                 {/* {toggleCart && <CardDropdown />} */}
             </div>
             <Outlet/>
