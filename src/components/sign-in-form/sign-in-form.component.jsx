@@ -1,6 +1,6 @@
 import "./sign-in-form.styles.scss";
 import FormInput from "../form-input/form-input.component.jsx";
-import Button from "../button/button.component";
+import Button, {BUTTON_TYPE_CLASSES} from "../button/button.component";
 import { useState} from "react";
 import {
   signInWithGooglePopup,
@@ -32,7 +32,7 @@ const SignInForm = () => {
     try {
       const { user } = await signInAuthUserWithEmailAndPassword(email, password); //returns userCredential, and we want only user
       // Signed in
-      console.warn("user => ", user);
+    //   console.warn("user => ", user);
     //   setCurrentUser(user);
       // .then((userCredential) => {
       //   // Signed in
@@ -86,10 +86,10 @@ const SignInForm = () => {
           required
         />
         <div className="buttons-container">
-          <Button buttonType="" type="submit">
+          <Button buttonType={BUTTON_TYPE_CLASSES.base} type="submit">
             Sign in
           </Button>
-          <Button buttonType="google" type='button' onClick={logGoogleUser}>
+          <Button buttonType={BUTTON_TYPE_CLASSES.google} type='button' onClick={logGoogleUser}>
             Google Sign in
           </Button>
         </div>

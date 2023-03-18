@@ -1,4 +1,4 @@
-import './checkout-item.component.scss'
+import {CheckoutItemContainer, ImageContainer, NormalField,LeftArrowCss, RightArrowCss, Quantity, Value, RemoveX} from './checkout-item.styles'
 import {Fragment} from 'react'
 import { useContext } from 'react';
 import { CartContext } from '../../contexts/cart.context';  
@@ -31,23 +31,40 @@ const CheckoutItem = ({cartItem})=>{
         //         <td><button className='remove-cart-item-button' onClick={()=>{removeItemfromCart(cartItem)}}>X</button></td>
         //     </tr>
         // </Fragment>
-            <div className="checkout-item-container">
-                <div className="image-container">
+            <CheckoutItemContainer>
+                <ImageContainer>
                 <img src={imageUrl} alt={name}/>
-                </div> 
-                <h4 className='name'>{name}</h4>
-                <div className='quantity'>
-                    <LeftArrow className='arrow' onClick={removeCartItem}></LeftArrow>
+                </ImageContainer> 
+                <NormalField as='h5'>{name}</NormalField>
+                <Quantity>
+                    <LeftArrowCss onClick={removeCartItem}></LeftArrowCss>
                     {/* <button className='left-arrow-button' onClick={()=>{removeOneCartItem(cartItem)}}>-</button> */}
-                    <div className='value'>{quantity}</div>
+                    <Value >{quantity}</Value>
                     {/* <button className='right-arrow-button' onClick={()=>{addItemToCart(cartItem)}}>+</button> */}
-                    <RightArrow className='arrow' onClick={addCartItem}></RightArrow>
-                </div>
-                <span className='price'>${price}</span>
+                    <RightArrowCss className='arrow' onClick={addCartItem}></RightArrowCss>
+                </Quantity>
+                <NormalField>${price}</NormalField>
                 {/* <span><button className='remove-cart-item-button' onClick={()=>{removeItemfromCart(cartItem)}}>X</button></span> */}
-                <div className='remove-button' onClick={clearCartItem}>&#10005;</div>
-            </div>
+                <RemoveX onClick={clearCartItem}>&#10005;</RemoveX>
+            </CheckoutItemContainer>
     )
 }   
 
 export default CheckoutItem;
+
+// <div className="checkout-item-container">
+// <div className="image-container">
+// <img src={imageUrl} alt={name}/>
+// </div> 
+// <normalField as='h4'>{name}</normalField>
+// <div className='quantity'>
+//     <LeftArrow className='arrow' onClick={removeCartItem}></LeftArrow>
+//     {/* <button className='left-arrow-button' onClick={()=>{removeOneCartItem(cartItem)}}>-</button> */}
+//     <normalField className='value'>{quantity}</normalField>
+//     {/* <button className='right-arrow-button' onClick={()=>{addItemToCart(cartItem)}}>+</button> */}
+//     <RightArrow className='arrow' onClick={addCartItem}></RightArrow>
+// </div>
+// <normalField className='price'>${price}</normalField>
+// {/* <span><button className='remove-cart-item-button' onClick={()=>{removeItemfromCart(cartItem)}}>X</button></span> */}
+// <div className='remove-button' onClick={clearCartItem}>&#10005;</div>
+// </div>

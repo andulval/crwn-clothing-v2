@@ -6,7 +6,7 @@ import {
 } from "../../utils/firebase/firebase.utils";
 import FormInput from '../form-input/form-input.component.jsx'
 import './sign-up-form.styles.scss'
-import Button from '../button/button.component'
+import Button, {BUTTON_TYPE_CLASSES} from '../button/button.component'
 // import {UserContext} from '../../contexts/user.context'
 
 const defaultFormFields = {
@@ -101,7 +101,7 @@ const SignUpForm = () => {
           value={confirmPassword}
           required
         />
-        <Button  type="submit">Sign up</Button>
+        <Button buttonType={BUTTON_TYPE_CLASSES.base} type="submit">Sign up</Button>
       </form>
     </div>
   );

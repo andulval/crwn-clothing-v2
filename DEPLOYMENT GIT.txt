@@ -30,19 +30,6 @@ To https://github.com/andulval/crwn-clothing-v2.git
    40f1cef..12c4b20  context-for-state -> context-for-state
 
 michz@DESKTOP-J93F3DE MINGW64 /d/_Programowanie/2023 - React/mich-clothing (context-for-state)
-$ git b
-git: 'b' is not a git command. See 'git --help'.
-
-The most similar commands are
-        bisect
-        branch
-        am
-        gc
-        mv
-        p4
-        rm
-
-michz@DESKTOP-J93F3DE MINGW64 /d/_Programowanie/2023 - React/mich-clothing (context-for-state)
 $ git branch
   branch-2-addingFonts
   branch-3
@@ -103,11 +90,6 @@ Fast-forward
  create mode 100644 src/routes/shop/shop.component.jsx
  create mode 100644 src/routes/shop/shop.styles.scss
  create mode 100644 src/shop-data.json
-
-michz@DESKTOP-J93F3DE MINGW64 /d/_Programowanie/2023 - React/mich-clothing (master)
-$ git push origin master
-fatal: 'origin' does not appear to be a git repository
-fatal: Could not read from remote repository.
 
 Please make sure you have the correct access rights
 and the repository exists.
