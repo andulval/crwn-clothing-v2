@@ -82,15 +82,12 @@ const removeCartAllQuantities = (cartItems, productToRemove) => {
   //     //return new array with modified cartItem / new cart item
   //     return [...cartItems];
 };
-
-
+export const setCartAnime = (cartAnime) => {
+  return createAction(CART_ACTION_TYPES.ANIME_CART, cartAnime);
+};
 
 export const setToggleCart = (toggleCart) => {
   return createAction(CART_ACTION_TYPES.TOGGLE_CART, toggleCart);
-};
-
-export const setCartAnime = (cartAnime) => {
-  return createAction(CART_ACTION_TYPES.ANIME_CART, cartAnime);
 };
 
 export const addItemToCart = (cartItems, productToAdd) => {

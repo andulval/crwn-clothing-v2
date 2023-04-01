@@ -55,8 +55,10 @@ const ProductCard = ({ product }) => {
   useEffect(() => {
     //set cart icon element class, after 500ms remove this class
     //wyzwala się przy kazdym rerun komponentu, jelsi zmienna w [] jako 2nd argument ulegnie zmianie
-    const timer1 = dispatch(setCartAnime(!cartAnime));
-    const timer = setTimeout(() => dispatch(setCartAnime(cartAnime)), 500);
+    dispatch(setCartAnime(true));
+    const timer = setTimeout(() => {
+      dispatch(setCartAnime(false));
+    }, 400);
     return () => clearTimeout(timer);
   }, [cartItems]);
   // return dispatch(setToggleCart(!toggleCart));

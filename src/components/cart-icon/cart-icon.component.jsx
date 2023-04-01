@@ -24,10 +24,8 @@ const CartIcon = () => {
 
   const handleCartToggler = () => {
     // setToggleCart(!toggleCart);
-    return dispatch(setToggleCart(!toggleCart));
+    dispatch(setToggleCart(!toggleCart));
   };
-
-
 
   // const handleCartTogglerHover = () => {
   //     // console.log('toggleCart --> ', toggleCart)
