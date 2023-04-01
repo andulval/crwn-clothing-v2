@@ -9,7 +9,7 @@ export const CategoriesContext = createContext({
   // setCurrentProducts: () => null,
 });
 
-//Functional component to wrap partion of code with will have access to above variables
+//Functional component to wrap portion of code with will have access to above variables
 export const CategoriesProvider = ({ children }) => {
   //Functional component
   const [categories, setCategories] = useState({});

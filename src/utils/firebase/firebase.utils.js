@@ -78,17 +78,23 @@ export const getCategoriesAndDocuments = async () => {
     // As shown above the useFirestoreQuery hook returns a QuerySnapshot, 
     // which requires developers to iterate over DocumentSnapshot instances and extract the data:
     // console.log('querySnapshot', querySnapshot);
-    const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot)=>{//we want just raw data
-        //querySnapshoot.docs gives us an aaray of documents inside
-        // console.log('doc', docSnapshot);
-        // console.log('docSnapshot.data', docSnapshot.data())
-        //return getDoc(doc);
-        const {title, items } = docSnapshot.data();
-        acc[title.toLowerCase()] = items;
-        return acc;
-    }, {})
+    
+    //get raw data
+    return querySnapshot.docs.map(docSnapshot => docSnapshot.data());
+
+    //BELOW we take only some data
+    // const categoryMap = querySnapshot.docs.map;
+    //     .reduce((acc, docSnapshot)=>{//we want just raw data
+    //     //querySnapshoot.docs gives us an aaray of documents inside
+    //     // console.log('doc', docSnapshot);
+    //     // console.log('docSnapshot.data', docSnapshot.data())
+    //     //return getDoc(doc);
+    //     const {title, items } = docSnapshot.data();
+    //     acc[title.toLowerCase()] = items;
+    //     return acc;
+    // }, {})
     // console.log(categoryMap)
-    return categoryMap;
+    // return categoryMap;
 }
 
 

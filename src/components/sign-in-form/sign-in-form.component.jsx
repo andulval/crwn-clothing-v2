@@ -60,7 +60,7 @@ const SignInForm = () => {
   const handleChange = (event) => {
     const { name, value } = event.target; //daje nam wartosci (obiekt) który został wywołany
     setFormFields({ ...formFields, [name]: value }); //[name]: powoduje wpisanie warosic zmiennej do klucza obiektu
-    //...formFields means spred vaules unchanged from previous useState, then modify name in this case..
+    //...formFields means spred vaules unchanged from previous useState, then modify name in this case for [name]: value (add new or updae if exist)
     // console.log(event.target.name)
   };
 
