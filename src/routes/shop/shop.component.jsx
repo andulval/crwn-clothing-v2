@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { useContext, Fragment, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setCategories } from "../../store/categories/category.action";
+import { fetchCategoriesStart, setCategories } from "../../store/categories/category.action";
 import { fetchCategoriesAsync } from "../../store/categories/category.action";
 
 import CategoriesPreview from "../categories-preview.component/categories-preview.component";
@@ -22,7 +22,7 @@ const Shop = () => {
     //   dispatch(setCategories(categoriesArray));
     // };
     // getCategoriesMap();
-    dispatch(fetchCategoriesAsync());
+    dispatch(fetchCategoriesStart());
   }, []); //is called when parameters in array changes []  - here is empty so it will run only once, when component mounts
 
   return (

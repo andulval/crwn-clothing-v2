@@ -21,16 +21,17 @@ export const fetchCategoriesFailed = (error) => {
   return createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_FAILED, error);
 };
 
-export const fetchCategoriesAsync = () => {
-  const funct = async (dispatch) => {
-    dispatch(fetchCategoriesStart()); //zmiana danych w 'store' Reduxa, wymuszenie przeliczenia
-    try {
-      const categoriesArray = await getCategoriesAndDocuments("categories");
-      dispatch(fetchCategoriesSucess(categoriesArray));
-    } catch (error) {
-      dispatch(fetchCategoriesFailed(error));
-    }
-  };
+//when used thunk library:
+// export const fetchCategoriesAsync = () => {
+//   const funct = async (dispatch) => {
+//     dispatch(fetchCategoriesStart()); //zmiana danych w 'store' Reduxa, wymuszenie przeliczenia
+//     try {
+//       const categoriesArray = await getCategoriesAndDocuments("categories");
+//       dispatch(fetchCategoriesSucess(categoriesArray));
+//     } catch (error) {
+//       dispatch(fetchCategoriesFailed(error));
+//     }
+//   };
 
-  return funct;
-};
+//   return funct;
+// };
