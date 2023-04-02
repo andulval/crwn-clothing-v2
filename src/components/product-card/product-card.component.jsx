@@ -14,7 +14,7 @@ import {
   selectCartItems,
 } from "../../store/cart/cart.selector.js";
 
-import { addItemToCart, setCartAnime } from "../../store/cart/cart.action.js";
+import { addItemToCart, setCartAnime } from "../../store/cart/cart.reducer";
 
 const ProductCard = ({ product }) => {
   const { name, price, imageUrl, id } = product;
@@ -34,7 +34,7 @@ const ProductCard = ({ product }) => {
   // console.log('ProductCard hit!')
 
   const buttonClickHandler = () => {
-    return dispatch(addItemToCart(cartItems, product)); //save chcanges to redux sotore obejct
+    return dispatch(addItemToCart(product)); //save chcanges to redux sotore obejct
     // changeafter1sHandler();
   };
 

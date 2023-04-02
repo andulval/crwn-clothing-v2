@@ -14,12 +14,12 @@ import { Fragment } from "react";
 import { ReactComponent as LeftArrow } from "../../assets/reshot-icon-arrow-chevron-left-975UQXVKZF.svg";
 import { ReactComponent as RightArrow } from "../../assets/reshot-icon-arrow-chevron-right-WDGHUKQ634.svg";
 import { useSelector, useDispatch } from "react-redux";
-import { selectCartItems } from "../../store/cart/cart.selector";
+// import { selectCartItems } from "../../store/cart/cart.selector";
 import {
   removeItemfromCart,
   removeOneCartItem,
   addItemToCart,
-} from "../../store/cart/cart.action";
+} from "../../store/cart/cart.reducer";
 
 const CheckoutItem = ({ cartItem }) => {
   const { imageUrl, price, quantity, name, id } = cartItem;
@@ -27,11 +27,11 @@ const CheckoutItem = ({ cartItem }) => {
   //     useContext(CartContext);
   const dispatch = useDispatch();
   //You call store.dispatch to dispatch an action. This is the only way to trigger a state change.
-  const cartItems = useSelector(selectCartItems);
+//   const cartItems = useSelector(selectCartItems);
 
-  const removeCartItem = () => dispatch(removeOneCartItem(cartItems, cartItem));
-  const addCartItem = () => dispatch(addItemToCart(cartItems, cartItem));
-  const clearCartItem = () => dispatch(removeItemfromCart(cartItems, cartItem));
+  const removeCartItem = () => dispatch(removeOneCartItem(cartItem));
+  const addCartItem = () => dispatch(addItemToCart(cartItem));
+  const clearCartItem = () => dispatch(removeItemfromCart(cartItem));
 
   return (
     // <Fragment >

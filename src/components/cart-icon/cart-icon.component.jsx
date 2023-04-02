@@ -13,7 +13,7 @@ import {
   selectToggleCart,
   selectCartAnime,
 } from "../../store/cart/cart.selector";
-import { setToggleCart } from "../../store/cart/cart.action";
+import { setToggleCart } from "../../store/cart/cart.reducer";
 
 const CartIcon = () => {
   // const {cartCount, toggleCart, setToggleCart, cartAnime} = useContext(CartContext);

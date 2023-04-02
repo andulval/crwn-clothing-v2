@@ -83,8 +83,6 @@ const removeCartAllQuantities = (cartItems, productToRemove) => {
   //     return [...cartItems];
 };
 
-
-
 export const setToggleCart = (toggleCart) => {
   return createAction(CART_ACTION_TYPES.TOGGLE_CART, toggleCart);
 };

@@ -17,7 +17,7 @@ import {
   selectToggleCart,
 } from "../../store/cart/cart.selector.js";
 import { useDispatch } from "react-redux";
-import { setToggleCart } from "../../store/cart/cart.action.js";
+import { setToggleCart } from "../../store/cart/cart.reducer";
 
 function CartDropdown() {
   // const {name, price, imageUrl, id} = product;

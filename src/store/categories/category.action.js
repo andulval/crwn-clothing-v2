@@ -34,3 +34,17 @@ export const fetchCategoriesAsync = () => {
 
   return funct;
 };
+
+export const fetchCategories = () => {
+  const funct = async (dispatch) => {
+    dispatch(fetchCategoriesStart()); //zmiana danych w 'store' Reduxa, wymuszenie przeliczenia
+    try {
+      const categoriesArray = await getCategoriesAndDocuments("categories");
+      dispatch(fetchCategoriesSucess(categoriesArray));
+    } catch (error) {
+      dispatch(fetchCategoriesFailed(error));
+    }
+  };
+
+  return funct;
+};
