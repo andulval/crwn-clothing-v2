@@ -1,12 +1,13 @@
 import { async } from "@firebase/util";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
-import FormInput from '../form-input/form-input.component.jsx'
-import './sign-up-form.styles.scss'
-import Button, {BUTTON_TYPE_CLASSES} from '../button/button.component'
+import FormInput from "../form-input/form-input.component.jsx";
+import "./sign-up-form.styles.scss";
+import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 // import {UserContext} from '../../contexts/user.context'
 
 const defaultFormFields = {
@@ -19,12 +20,12 @@ const defaultFormFields = {
 const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
-    // const {setCurrentUser} = useContext(UserContext);
+  // const {setCurrentUser} = useContext(UserContext);
+  const navigate = useNavigate();
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
-  }
-
+  };
 
   const handleSubmit = async (event) => {
     // console.log('event handleSubmit A => ', event);
@@ -32,28 +33,33 @@ const SignUpForm = () => {
     // console.log("formFields => ", formFields);
     //1 check password and confirmpassword
     if (password !== confirmPassword) {
-        alert('Passwords do not match');
-        return;
+      alert("Passwords do not match");
+      return;
     }
-    
-    try {
-        //2 auth user - createAuthUserWithEmailAndPassword(email, password);
-        const {user}= await createAuthUserWithEmailAndPassword(email, password);
-        console.log("user => ", user);
-        // setCurrentUser(user)
 
-        //3 create user document
-        const newUser = await createUserDocumentFromAuth(user, {displayName})
-        console.log("newUserSaved => ", newUser);
-        resetFormFields();
+    try {
+      //2 auth user - createAuthUserWithEmailAndPassword(email, password);
+      const { user } = await createAuthUserWithEmailAndPassword(
+        email,
+        password
+      );
+      console.log("user => ", user);
+      // setCurrentUser(user)
+
+      //3 create user document
+      const newUser = await createUserDocumentFromAuth(user, { displayName });
+      console.log("newUserSaved => ", newUser);
+      resetFormFields();
+      navigate("/");
     } catch (error) {
-        if(error.code==='auth/email-already-in-use'){//this code is from firebase when it checks if user already exists
-            alert('Cannot create user, email already in use')
-        }else if(error.code==='auth/weak-password'){
-            alert('Password should be at least 6 characters')
-        }else{
-            console.log("error SignUpForm", error.message);
-        }
+      if (error.code === "auth/email-already-in-use") {
+        //this code is from firebase when it checks if user already exists
+        alert("Cannot create user, email already in use");
+      } else if (error.code === "auth/weak-password") {
+        alert("Password should be at least 6 characters");
+      } else {
+        console.log("error SignUpForm", error.message);
+      }
     }
   };
 
@@ -66,7 +72,7 @@ const SignUpForm = () => {
 
   return (
     <div className="sign-up-container">
-    <h2>Don't have an account?</h2>
+      <h2>Don't have an account?</h2>
       <span>Sign up with your email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput
@@ -101,7 +107,9 @@ const SignUpForm = () => {
           value={confirmPassword}
           required
         />
-        <Button buttonType={BUTTON_TYPE_CLASSES.base} type="submit">Sign up</Button>
+        <Button buttonType={BUTTON_TYPE_CLASSES.base} type="submit">
+          Sign up
+        </Button>
       </form>
     </div>
   );

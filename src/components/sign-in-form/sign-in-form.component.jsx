@@ -1,14 +1,14 @@
 import "./sign-in-form.styles.scss";
 import FormInput from "../form-input/form-input.component.jsx";
-import Button, {BUTTON_TYPE_CLASSES} from "../button/button.component";
-import { useState} from "react";
+import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   signInWithGooglePopup,
   createUserDocumentFromAuth,
-  signInAuthUserWithEmailAndPassword
+  signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils.js";
 // import { UserContext } from "../../contexts/user.context";
-
 
 const defaultFormFields = {
   email: "",
@@ -18,9 +18,8 @@ const defaultFormFields = {
 const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
-//   const {setCurrentUser} = useContext(UserContext);
-
-
+  //   const {setCurrentUser} = useContext(UserContext);
+  const navigate = useNavigate();
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
@@ -30,19 +29,26 @@ const SignInForm = () => {
     event.preventDefault(); //we are going to handle everything acc to <form> data
 
     try {
-      const { user } = await signInAuthUserWithEmailAndPassword(email, password); //returns userCredential, and we want only user
+      const { user } = await signInAuthUserWithEmailAndPassword(
+        email,
+        password
+      ); //returns userCredential, and we want only user
       // Signed in
-    //   console.warn("user => ", user);
-    //   setCurrentUser(user);
+      //   console.warn("user => ", user);
+      //   setCurrentUser(user);
       // .then((userCredential) => {
       //   // Signed in
       //   const user = userCredential.user;
       // })
       resetFormFields();
+      navigate("/");
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
-      if(errorCode==='auth/user-not-found' || errorCode==='auth/wrong-password') {
+      if (
+        errorCode === "auth/user-not-found" ||
+        errorCode === "auth/wrong-password"
+      ) {
         alert("Wrong email or password! Try again");
       } else {
         console.error({ errorCode, errorMessage });
@@ -55,6 +61,7 @@ const SignInForm = () => {
     // // setCurrentUser(user);
     // const userDocRef = await createUserDocumentFromAuth(user);
     await signInWithGooglePopup();
+    navigate("/");
   };
 
   const handleChange = (event) => {
@@ -89,7 +96,11 @@ const SignInForm = () => {
           <Button buttonType={BUTTON_TYPE_CLASSES.base} type="submit">
             Sign in
           </Button>
-          <Button buttonType={BUTTON_TYPE_CLASSES.google} type='button' onClick={logGoogleUser}>
+          <Button
+            buttonType={BUTTON_TYPE_CLASSES.google}
+            type="button"
+            onClick={logGoogleUser}
+          >
             Google Sign in
           </Button>
         </div>

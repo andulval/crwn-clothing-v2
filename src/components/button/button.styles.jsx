@@ -20,6 +20,9 @@ export const BaseButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 
   &:hover {
     background-color: white;
