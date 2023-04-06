@@ -1,6 +1,6 @@
 import { Fragment, useContext } from "react"; //Fragment renders to nothing when landing on DOM
 //it is because Component must have top level div or sth. Fragment just throw components insde without addidtional padding margin etc.
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../store/user/user.selector";
 //Outlet - w tym miejscu wstawiane są children of this component, dla route element
@@ -31,6 +31,10 @@ const Navbar = () => {
   //     useContext(CartContext);
   // console.log('toggleCart', toggleCart);
   const toggleCart = useSelector(selectToggleCart);
+  const navigate = useNavigate();
+  const signOutHandler = () => {
+    navigate("/");
+  };
 
   return (
     <Fragment>
@@ -41,7 +45,14 @@ const Navbar = () => {
         <NavLinks>
           <NavLink to="/shop">SHOP</NavLink>
           {currentUser ? (
-            <NavLink as="span" onClick={signOutUser}>
+            //{function(event){ func1(); func2()}}
+            <NavLink
+              as="span"
+              onClick={() => {
+                signOutUser();
+                signOutHandler();
+              }}
+            >
               Sign Out, <b>{currentUser.email}</b>
             </NavLink>
           ) : (

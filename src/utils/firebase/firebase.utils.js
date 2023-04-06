@@ -18,7 +18,7 @@ import {
   collection,
   writeBatch,
   query,
-  getDocs
+  getDocs,
 } from "firebase/firestore";
 
 // Your web app's Firebase configuration
@@ -53,7 +53,7 @@ export const db = getFirestore(); //init firestore instance of database
 export const addCollectionAndDocuments = async (
   collectionKey,
   objectsToAdd,
-  field = 'title' //default value, if no delivered
+  field = "title" //default value, if no delivered
 ) => {
   const colletcionRef = collection(db, collectionKey);
   const batch = writeBatch(db); //batch is a transaction - all operatuions must succed to suuces write
@@ -67,36 +67,35 @@ export const addCollectionAndDocuments = async (
 };
 
 export const getCategoriesAndDocuments = async () => {
-    const collectionRef = collection(db, 'categories');
-    const q = query(collectionRef); //gives us a object from given collection
-    // console.log('q',q);
-    const querySnapshot = await getDocs(q); // fetch documents snapshot
-    // When Firestore returns data from a query, it does not provide the raw document data - 
-    // instead we are provided a QuerySnapshot containing an array of DocumentSnapshot instances. 
-    // Although these classes provide useful functionality, 
-    // we sometimes just want the data from the database for convinience.
-    // As shown above the useFirestoreQuery hook returns a QuerySnapshot, 
-    // which requires developers to iterate over DocumentSnapshot instances and extract the data:
-    // console.log('querySnapshot', querySnapshot);
-    
-    //get raw data
-    return querySnapshot.docs.map(docSnapshot => docSnapshot.data());
+  const collectionRef = collection(db, "categories");
+  const q = query(collectionRef); //gives us a object from given collection
+  // console.log('q',q);
+  const querySnapshot = await getDocs(q); // fetch documents snapshot
+  // When Firestore returns data from a query, it does not provide the raw document data -
+  // instead we are provided a QuerySnapshot containing an array of DocumentSnapshot instances.
+  // Although these classes provide useful functionality,
+  // we sometimes just want the data from the database for convinience.
+  // As shown above the useFirestoreQuery hook returns a QuerySnapshot,
+  // which requires developers to iterate over DocumentSnapshot instances and extract the data:
+  // console.log('querySnapshot', querySnapshot);
 
-    //BELOW we take only some data
-    // const categoryMap = querySnapshot.docs.map;
-    //     .reduce((acc, docSnapshot)=>{//we want just raw data
-    //     //querySnapshoot.docs gives us an aaray of documents inside
-    //     // console.log('doc', docSnapshot);
-    //     // console.log('docSnapshot.data', docSnapshot.data())
-    //     //return getDoc(doc);
-    //     const {title, items } = docSnapshot.data();
-    //     acc[title.toLowerCase()] = items;
-    //     return acc;
-    // }, {})
-    // console.log(categoryMap)
-    // return categoryMap;
-}
+  //get raw data
+  return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
 
+  //BELOW we take only some data
+  // const categoryMap = querySnapshot.docs.map;
+  //     .reduce((acc, docSnapshot)=>{//we want just raw data
+  //     //querySnapshoot.docs gives us an aaray of documents inside
+  //     // console.log('doc', docSnapshot);
+  //     // console.log('docSnapshot.data', docSnapshot.data())
+  //     //return getDoc(doc);
+  //     const {title, items } = docSnapshot.data();
+  //     acc[title.toLowerCase()] = items;
+  //     return acc;
+  // }, {})
+  // console.log(categoryMap)
+  // return categoryMap;
+};
 
 export const createUserDocumentFromAuth = async (
   userAuth,
@@ -111,16 +110,19 @@ export const createUserDocumentFromAuth = async (
 
   if (!userSnapshot.exists()) {
     //create new date in 'user' document - if no exist already
-    const { displayName, email } = userAuth;
+    const { email } = userAuth;
+    const { displayName } = additionalInformation;
+
     const createdAt = new Date();
 
     try {
       await setDoc(userDocRef, {
-        displayName, //is set to null on object Auth in the createAuthUserWithEmailAndPassword method return object
+        displayName, //error - is set to null on object Auth in the createAuthUserWithEmailAndPassword method return object
         email,
         createdAt,
         ...additionalInformation, //it will overwrite before values if it is the same
       });
+      //   await userAuth.updateProfile({ displayName: displayName });
     } catch (error) {
       console.log("error creating the user", error.code);
     }

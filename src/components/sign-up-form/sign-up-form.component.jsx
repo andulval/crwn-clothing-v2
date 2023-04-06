@@ -42,13 +42,18 @@ const SignUpForm = () => {
       const { user } = await createAuthUserWithEmailAndPassword(
         email,
         password
-      );
+      ).then();
+      //   await user.updateProfile({ displayName: displayName });
       console.log("user => ", user);
       // setCurrentUser(user)
 
       //3 create user document
       const newUser = await createUserDocumentFromAuth(user, { displayName });
-      console.log("newUserSaved => ", newUser);
+
+      //   const test1 = { displayName };
+      //   console.log("displayName test1=> ", test1);
+      //   console.log("displayName => ", test1.displayName);
+      //   console.log("newUserSaved => ", newUser);
       resetFormFields();
       navigate("/");
     } catch (error) {
