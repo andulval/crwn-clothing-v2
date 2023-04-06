@@ -2,22 +2,6 @@ import { CART_ACTION_TYPES } from "./cart.types";
 import { createAction } from "../../utils/reducer/reducer.utils";
 
 const addCartItem = (cartItems, productToAdd) => {
-  // // //find if cartItems contains productToAdd
-  // const itemExistIndex = cartItems1.findIndex(item => {
-  //     return item.id === productToAdd.id;
-  // })
-  // // //if found, icrement quantity
-  // if(itemExistIndex!==-1){
-  //     cartItems1[itemExistIndex].quantity += 1;
-  // }else{
-  //     productToAdd.quantity = 1;
-  //     cartItems1.push(productToAdd);
-  //     //[{...productToAdd, quantity: 1}]
-  // }
-  // //return new array with modified cartItem / new cart item
-  // return [...cartItems1]; //musi być destrukuryzaja aby React uwzglednił zmiane wartosci cartItem i pzreliczył/zrenderował ponownie całość! - gdy dasz return cartItem to nie wykryje zmian - M<USIMY ZMIENIC NIE WARTOSC A CEL PRZYPISANIA (obiekt wskazania)
-  // //return [...cartItems, {...productToAdd, quantity: 1}]
-
   //Z KURSU - inny sposób - bez mutacji!
   //opcja BEZ MUTACJI bazowego argumentu - WRSJA PREFEROWANA
   // find if cartItems contains productToAdd
@@ -112,4 +96,18 @@ export const removeItemfromCart = (cartItems, productToRemove) => {
     CART_ACTION_TYPES.SET_CART_ITEMS,
     removeCartAllQuantities(cartItems, productToRemove)
   );
+};
+
+export const deleteCart = () => {
+  //   return createAction(CART_ACTION_TYPES.DELETE_CART, []);
+};
+
+export const setPreviousCart = (previousCart) => {
+  // setCartItems(removeCartAllQuantities(cartItems, productToRemove))REUSE_PREVIOUS_CART
+  console.log("previousCart ACTION", previousCart);
+  return createAction(CART_ACTION_TYPES.REUSE_PREVIOUS_CART, [...previousCart]);
+};
+
+export const setAllCart = (allCart) => {
+  return createAction(CART_ACTION_TYPES.SET_WHOLE_CART, [...allCart]);
 };

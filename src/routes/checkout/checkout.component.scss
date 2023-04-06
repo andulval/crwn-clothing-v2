@@ -32,4 +32,17 @@
     margin-left: auto;
     font-size: 36px;
   }
+
+  .previousCartButton {
+    padding: 30px;
+    // text-decoration: underline;
+    color: rgb(142, 142, 142);
+    transition: 0.2s linear;
+  }
+  .previousCartButton:hover {
+    color: rgb(80, 42, 42);
+    text-decoration: underline;
+    cursor: pointer;
+    scale: 100.6%;
+  }
 }

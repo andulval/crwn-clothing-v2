@@ -6,11 +6,16 @@ export const selectCartItems = createSelector(
   [selectCartReducer], //when it changes
   (cart) => cart.cartItems
 );
+export const selectPreviousCartItems = createSelector(
+  [selectCartReducer], //when it changes
+  (cart) => cart.previousCartItems
+);
 
 export const selectToggleCart = createSelector(
   [selectCartReducer], //when it changes
   (cart) => cart.toggleCart
 );
+
 export const selectCartAnime = createSelector(
   [selectCartReducer], //when it changes call below function
   (cart) => cart.cartAnime

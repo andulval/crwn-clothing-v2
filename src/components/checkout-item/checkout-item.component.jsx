@@ -33,6 +33,7 @@ const CheckoutItem = ({ cartItem }) => {
   const addCartItem = () => dispatch(addItemToCart(cartItems, cartItem));
   const clearCartItem = () => dispatch(removeItemfromCart(cartItems, cartItem));
 
+
   return (
     // <Fragment >
     //     <tr className="cart-final-item-container">
