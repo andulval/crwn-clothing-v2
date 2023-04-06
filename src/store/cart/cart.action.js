@@ -99,12 +99,12 @@ export const removeItemfromCart = (cartItems, productToRemove) => {
 };
 
 export const deleteCart = () => {
-  //   return createAction(CART_ACTION_TYPES.DELETE_CART, []);
+  return createAction(CART_ACTION_TYPES.DELETE_CART, []);
 };
 
 export const setPreviousCart = (previousCart) => {
   // setCartItems(removeCartAllQuantities(cartItems, productToRemove))REUSE_PREVIOUS_CART
-  console.log("previousCart ACTION", previousCart);
+  //   console.log("previousCart ACTION", previousCart);
   return createAction(CART_ACTION_TYPES.REUSE_PREVIOUS_CART, [...previousCart]);
 };
 
