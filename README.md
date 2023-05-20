@@ -9,7 +9,7 @@ The project is an extension of the web application made during Complete React De
 
 >User can sign up with email and password
 
->User can log in with with google or email and password
+>User can log-in with google or email and password
 
 >User can add products to cart
 
