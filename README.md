@@ -1,5 +1,5 @@
 # Crwn-clothing
-[Click to see the website](https://master--chipper-cassata-41e430.netlify.app/)
+[Link to the website](https://master--chipper-cassata-41e430.netlify.app/)
 
 Crwn-clothing is an E-commerce application similar to Shopify using React, Redux,
 React Router, Context API, Firebase, Stripe + more. Users can add products to cart
