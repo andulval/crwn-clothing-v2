@@ -4,7 +4,7 @@
 Crwn-clothing is an E-commerce application similar to Shopify using React, Redux,
 React Router, Context API, Firebase, Stripe + more. Users can add products to cart
 and make test payments. 
-The project is an extension of the web application made during Complete React Developer course  by ZTM on the Udemy platform.
+
 
 
 ## 🚀 Functionalities
@@ -152,3 +152,5 @@ After your pull request is merged, you can delete your branch
 ## 📝 Project License
 
 This project is under the MIT license.
+
+The project is an extension of the web application made during Complete React Developer course  by ZTM on the Udemy platform.
